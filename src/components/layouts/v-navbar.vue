@@ -91,9 +91,13 @@
 			toPage(value) {
 				 this.$router.push({
                     name: value
-                })
+                }).catch(error => {
+						if (error.name != "NavigationDuplicated") {
+						throw error;
+  					}
+				});
 			}
-		}
+		},
 	}
 </script>
 

@@ -23,7 +23,6 @@ export default {
 		data: () => ({
 			isLoading: true,
 			loadingDelay: 500
-
 		}),
 		methods: {
 			...mapActions(['FEATCH_DATA_TO_API']),		
@@ -33,7 +32,8 @@ export default {
 					if (response) {
 						setTimeout(()=> {
 						this.isLoading = false
-					}, this.loadingDelay)
+					}, 
+					this.loadingDelay)
 				}
 			})
 		}
