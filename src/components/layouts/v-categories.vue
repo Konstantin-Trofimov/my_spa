@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import {mapActions, mapState} from 'vuex';
+    import { mapActions, mapState } from 'vuex';
     import vCategoryList from './v-category-list'
 
     export default ({
@@ -23,10 +23,10 @@
            
 		},
 		methods: {
-			...mapActions(['SET_CATEGORY']),
+			...mapActions(['SORT_DATA']),
   		},	
 		mounted() {
-			this.SET_CATEGORY()	
+			this.SORT_DATA()	
 		}
 	})
 </script>

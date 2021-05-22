@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import vGallery from '../views/v-gallery.vue'
-import vPhotoInfo from '../views/v-photo-info.vue'
-import vAbout from '../views/v-about.vue'
+import vGalleryWrapper from '../views/v-gallery-wrapper'
+import vItemCardInfo from '../views/v-item-card-info'
+import vAbout from '../views/v-about'
 
 Vue.use(VueRouter)
 
@@ -10,7 +10,7 @@ const routes = [
 	{
 		path: '/',
 		name: 'gallery',
-		component: vGallery
+		component: vGalleryWrapper
 	},
 	{
 		path: '/about',
@@ -18,9 +18,9 @@ const routes = [
 		component: vAbout
 	},
 	{
-		path: '/photo',
-		name: 'photo',
-		component: vPhotoInfo
+		path: '/card',
+		name: 'card',
+		component: vItemCardInfo
 	}
 ]
 

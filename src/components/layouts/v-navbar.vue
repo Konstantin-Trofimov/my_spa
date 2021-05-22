@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<v-app-bar
-		color="#a9a9a9"
+		color="#c0c0c0"
 		dark
 		width="100%"
 	>
 		<v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-			</v-app-bar>
+	</v-app-bar>
 
 		<v-navigation-drawer
 		v-model="drawer"
@@ -20,30 +20,31 @@
 			>
 				<v-list-item-group
 					v-model="group"
-					active-class="deep-orange accent-3"
+					active-class="deep-orange accent-2"
 				>
 					<v-list-item-avatar
-						min-width="100px"
-						min-height="100px"
+						min-width="140px"
+						min-height="140px"
 					>
 						<v-img 
-							src="../assets/images/avatar.png"
-							min-width="100px"
-							min-height="100px"
+							src="../../assets/images/avatar.png"
+							alt="avatar"
+							width="100%"
+							height="100%"
 							>
 						</v-img>
 					</v-list-item-avatar>	
 
 					<v-list-item-content>
 						<v-list-item-title class="title">
-							Konstantin Trofimov
+							{{ contactData.fullName }}
 						</v-list-item-title>
 						<v-list-item-subtitle>
 							<a 
-								href="mailto:const.trofimov@gmail.com"
+								:href="`mailto:${contactData.email}`"
 								class="text-decoration-none  text--primary"
 							>
-								const.trofimov@gmail.com
+								{{ contactData.email }}
 							</a>
 						</v-list-item-subtitle>
 					</v-list-item-content>
@@ -81,11 +82,15 @@
 		data: () => ({
 			drawer: false,
 			group: null,
+			contactData: {
+				fullName: 'Konstantin Trofimov',
+				email: 'const.trofimov@gmail.com',
+			}
 		}),
 		methods: {
 			toPage(value) {
 				 this.$router.push({
-                    name: value,
+                    name: value
                 })
 			}
 		}

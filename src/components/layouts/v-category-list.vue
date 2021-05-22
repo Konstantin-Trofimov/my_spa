@@ -3,25 +3,26 @@
         <v-item-group>
             <v-row class="my-1">
                 <v-col
-                    v-for="photo in category"
-                    :key="photo.id" 
-                    cols="6"
-                    sm="2"
-                    md="4"
+                    v-for="item in category"
+                    :key="item.id" 
+                    cols="12"
+                    xs="6"
+                    sm="4"
+                    md="2"
                     lg="2"
                 >
                     <v-item>
                         <v-card class="d-flex align-center">   
                             <v-hover v-slot="{ hover }">
                                 <v-img
-                                    :src="photo.thumbnailUrl"
+                                    :src="item.thumbnailUrl"
                                     class="align-end pb-3"
                                     width="150px"
                                     height="150px" 
                                     >
                                     <v-btn
-                                        @click="toPhotoInfo(photo.id)"
-                                        class="category-item__btn fade-enter-active fade-leave-active"
+                                        @click="toItemInfo(+item.id)"
+                                        class="category-item__btn font-weight-bold pa-3"
                                         :class="{ 'show-btn': hover }"
                                         elevation="2"
                                         x-small
@@ -43,22 +44,24 @@
 		name: 'vCatigory',
         props: {
             category: {
-                type: Array
+                type: Array,
+                default: () => []
             }
         },
         methods: {
-            toPhotoInfo(id) {
+            toItemInfo(id) {
                 this.$router.push({
-                    name: 'photo',
+                    name: 'card',
                     query: { id },
                 })
-            }
-        } 
+            },
+        }
 	})
 </script>
 
 
 <style>
+
 	.category-item__btn {
 		cursor: pointer;
 		opacity: 0;
@@ -66,11 +69,7 @@
 	}
 	
 	.show-btn {
-		opacity: .6;
-	}
-
-	.fade-enter-active, .fade-leave-active {
-  		transition: opacity .5s;
+		opacity: .7 ;
 	}
 </style>
 

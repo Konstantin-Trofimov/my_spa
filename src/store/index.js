@@ -5,43 +5,46 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		photos: [],
-		categories: []
+		dataLimit: 24,
+		categorySize: 6,
+		data: [],
+		categories: [],
 	},
 	mutations: {
-		UPLOADING(state, photos) {
-			state.photos = photos
+		SET_DATA(state, data) {
+			state.data = data
 		},
-		SORT(state) {
-			let size = 6
-			let subarray = []
-			for (let i = 0; i <Math.ceil(state.photos.length/size); i++)	{
-				subarray[i] = state.photos.slice((i*size), (i*size) + size)
+		SET_CATEGORIES(state) {
+			const size = this.state.categorySize
+			const subarray = []
+
+			for (let i = 0; i < Math.ceil(state.data.length / size); i++) {
+				subarray[i] = state.data.slice((i * size), (i * size) + size)
 			}
 			state.categories = subarray
 		}
-
 	},
 	actions: {
-		async SET_DATA(ctx, limit) {  
+		async FEATCH_DATA_TO_API(ctx) {
+			const limit = this.state.dataLimit
 			const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=${limit}`)
-			const photos = await res.json()
-			ctx.commit('UPLOADING', photos)
-			return photos 
+			const data = await res.json()
+			
+			ctx.commit('SET_DATA', data)
+			return data
 		},
-		SET_CATEGORY({
+		SORT_DATA({
 			commit
 		}) {
-			commit('SORT')
+			commit('SET_CATEGORIES')
 		},
 	},
-
 	getters: {
-		DATA(state) {
-			return state.photos
+		GET_DATA(state) {
+			return state.data
 		},
-		CATEGORIES(state) {
-			return state.category
+		GET_CATEGORIES(state) {
+			return state.categories
 		}
 	}
 })
