@@ -26,6 +26,6 @@
 
 <style>
     svg {
-        transition: fill .3s;
+        transition: all ease-in-out .4s;
     }
 </style>

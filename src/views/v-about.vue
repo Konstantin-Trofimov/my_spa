@@ -16,11 +16,8 @@
 			<div>
 				Bы сможете узнать обо мне больше, посетив 
 				<a
-					@mouseover="isHover.link = true"
-      				@mouseleave="isHover.link = false"
 					:href="links.portfolio"
-					:class="[isHover.link ? 'red--text text--darken-2' : 'deep-orange--text' ]"
-					class="about__link"
+					class="about__link deep-orange--text text-decoration-none"
 				>
 					мой сайт
 				</a>
@@ -34,10 +31,10 @@
 					justify="end"
 				>	
 					<a :href="links.github"
-						@mouseover="isHover.icon= true"
-      					@mouseleave="isHover.icon = false"
+						@mouseover="isHover= true"
+      					@mouseleave="isHover = false"
 					>
-						<v-github-icon :hover="isHover.icon"></v-github-icon>
+						<v-github-icon :hover="isHover"></v-github-icon>
 					</a>
 				</v-row>
 			</v-list-item>
@@ -66,10 +63,7 @@
 					'Возможно, мой опыт еще не велик, но я уверенно компенсирую это постоянным стремлением к новым знаниям и усердием в своей работе. За время моего обучения, я доказал себе, что я могу оставаться максимально настойчивым в достижении поставленных перед собою целей, эффективно решать задачи, которые находятся в моей компетенции',
 					'Я мечтаю присоединиться к опытной и профессиональной команде, что бы продолжить свой путь, постоянно развиваясь и совершенствуя свои навыки'
 				],
-				isHover: {
-					link: false,
-					icon: false
-				},
+				isHover: false,
 				hoverDelay: 30
 			}
 		}
@@ -78,6 +72,22 @@
 
 <style>
 	.about__link {
-		transition: ease-out .6s;
+		display: inline-block;
+		position: relative;
+	}
+
+	.about__link::after {
+		position: absolute;
+		content: '';
+		width: 0px;
+		height: 2px;
+		display: block;
+		background: #FF5722;
+		transition: .4s;
+		bottom: 2px
+	}
+
+	.about__link:hover::after {
+  		width: 100%;
 	}
 </style>
